@@ -1,6 +1,6 @@
 ﻿using Cosmalyze.Api.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Cosmalyze.Api.Data
 {
@@ -16,9 +16,12 @@ namespace Cosmalyze.Api.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<Brand>().HasKey(b => b.Id);
             modelBuilder.Entity<Product>().HasKey(p => p.Id);
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.BrandNavigation)
+                .WithMany()
+                .HasForeignKey(p => p.BrandId);
             SeedBrands(modelBuilder);
         }
 

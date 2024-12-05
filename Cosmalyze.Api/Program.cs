@@ -45,6 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseAuthentication();
 
 app.UseHttpsRedirection();
@@ -54,8 +55,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-/*app.UseEndpoints(endpoints =>
-{
-    endpoints.MapRazorPages();
-});*/
